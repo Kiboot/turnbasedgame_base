@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      * If triggered, it will cause everything to be reset to its default value. Because we are not using classes,
                      * Every value has to be reset manually.**/
                     if (monsHP < 0){
-                        txtCombatLog.setText("The Player dealt " +heroDPT+ " damage to the Player. The Player was Victorious!");
+                        txtCombatLog.setText("The Player dealt " +heroDPT+ " damage to the Enemy. The Player was Victorious!");
                         heroHP = 1500;
                         monsHP = 1000;
                         turnNumber = 1;
