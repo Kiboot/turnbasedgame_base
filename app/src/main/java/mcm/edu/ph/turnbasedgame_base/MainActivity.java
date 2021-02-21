@@ -13,10 +13,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /** variables to be moved to other individual classes **/
     //Hero Class
-    int heroHP =        1500;
-    int heroMinDPT =    75;
-    int heroMaxDPT =    100;
-    String heroName  =  "Sir Kebs";
+    int heroHP =        1500; // not used anymore, left for reference purposes
+    int heroMinDPT =    75; // not used anymore, left for reference purposes
+    int heroMaxDPT =    100; // not used anymore, left for reference purposes
+    String heroName  =  "Sir Kebs"; // not used anymore, left for reference purposes
 
     //Monster Class
     int monsHP =        1000;
@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int monsMaxDPT =    150;
     String monsName  =  "Tardy Ness";
     /** exportable variables end **/
+
+    Hero hero_sirKebs = new Hero("Wawawee",6969,500,75,100,1.0,1.0,1.0);
 
     int turnNumber = 1; //This variable is responsible for counting how many turns the game has.
 
@@ -47,13 +49,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TextView txtMonsDPT = findViewById(R.id.txtEnemyDPT);
 
         /** Setting of the previously declared TextViews so it has information shown right from the start**/
-        txtHeroName.setText(heroName);
+        txtHeroName.setText(hero_sirKebs.unitName);
         txtMonsName.setText(monsName);
         /** directly putting integers as it is will cause an error, so heroHP and monsHP are first converted to string using String.valueOf() Method**/
-        txtHeroHP.setText(String.valueOf(heroHP));
+        txtHeroHP.setText(String.valueOf(hero_sirKebs.baseHealth));
         txtMonsHP.setText(String.valueOf(monsHP));
         /** to display the damage ranges of of player and enemy, i showed the minimum damage, the the maximum possible damage **/
-        txtHeroDPT.setText(heroMinDPT+ " ~ "+heroMaxDPT);
+        txtHeroDPT.setText(hero_sirKebs.minDPT+ " ~ "+hero_sirKebs.maxDPT);
         txtMonsDPT.setText(monsMinDPT+ " ~ "+monsMaxDPT);
         /** setting the onClickListener for the button to allow it to "sense" user input **/
         nextTurn.setOnClickListener(this);
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         /** We displayed the HP values here to reset the display every time the button is clicked**/
         txtMonsHP.setText(String.valueOf(monsHP));
-        txtHeroHP.setText(String.valueOf(heroHP));
+        txtHeroHP.setText(String.valueOf(hero_sirKebs.baseHealth));
 
         /** the randomizer we declared earlier was used in the declaration of turn damage of the player and the enemy.
          *  Each time onClick() is executed, the randomizer generates a number from the range provided, in our case, it
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          *  for the player, it should be (100 - 75), which is 25. now the randomizer has a range from zero to 25.
          *  Then, we add back the minimum damage that we deducted earlier which is 75. In this way, we can simulate the
          *  the range of 75 to 100. **/
-        int heroDPT = randomizer.nextInt(heroMaxDPT - heroMinDPT) + heroMinDPT;
+        int heroDPT = randomizer.nextInt(hero_sirKebs.maxDPT - hero_sirKebs.minDPT) + hero_sirKebs.minDPT;
         int monsDPT = randomizer.nextInt(monsMaxDPT - monsMinDPT) + monsMinDPT;
 
         /** the switch for the button/s starts here. DO NOT MODIFY!**/
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      * Every value has to be reset manually.**/
                     if (monsHP < 0){
                         txtCombatLog.setText("The Player dealt " +heroDPT+ " damage to the Enemy. The Player was Victorious!");
-                        heroHP = 1500;
+                        hero_sirKebs.baseHealth = 1500;
                         monsHP = 1000;
                         turnNumber = 1;
                         nextTurn.setText("Reset Game");
@@ -128,14 +130,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  * "IF TURN NUMBER HAS NO REMAINDER WHEN DIVIDED BY TWO"). The code below will not be explained
                  * any further as it is just a mirror of the code we have for the player turn**/
                 else if(turnNumber%2 != 1){
-                    heroHP = heroHP - monsDPT;
+                    hero_sirKebs.baseHealth = hero_sirKebs.baseHealth - monsDPT;
                     turnNumber++;
                     txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player");
-                    txtHeroHP.setText(String.valueOf(heroHP));
+                    txtHeroHP.setText(String.valueOf(hero_sirKebs.baseHealth));
                     nextTurn.setText("Player's Turn ("+turnNumber+ ")");
-                    if (heroHP < 0){
+                    if (hero_sirKebs.baseHealth < 0){
                         txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player. The Player Died");
-                        heroHP = 1500;
+                        hero_sirKebs.baseHealth = 1500;
                         monsHP = 1000;
                         turnNumber = 1;
                         nextTurn.setText("Reset Game");
