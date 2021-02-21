@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     /** the HP values of the monster is updated to correspond with the deduction taken from the player damage **/
                     txtMonsHP.setText(String.valueOf(monsHP));
                     /** We also have updated the text of the button to show how much turns have elapsed **/
-                    nextTurn.setText("Next Turn ("+turnNumber+ ")");
+                    nextTurn.setText("Enemy's Turn ("+turnNumber+ ")");
                     /** this nested condition here catches whether we dealt a fatal blow (our damage exceeded the monster hp.
                      * If triggered, it will cause everything to be reset to its default value. Because we are not using classes,
                      * Every value has to be reset manually.**/
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNumber++;
                     txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player");
                     txtHeroHP.setText(String.valueOf(heroHP));
-                    nextTurn.setText("Next Turn ("+turnNumber+ ")");
+                    nextTurn.setText("Player's Turn ("+turnNumber+ ")");
                     if (heroHP < 0){
                         txtCombatLog.setText("The Monster dealt " +monsDPT+ " damage to the Player. The Player Died");
                         heroHP = 1500;
