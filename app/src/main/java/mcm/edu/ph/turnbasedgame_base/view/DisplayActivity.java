@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.Random;
-import android.os.Bundle;
 import mcm.edu.ph.turnbasedgame_base.R;
 import mcm.edu.ph.turnbasedgame_base.model.Hero;
 
